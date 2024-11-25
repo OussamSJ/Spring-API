@@ -46,4 +46,34 @@ public int create(Entreprise entreprise) {
 	return entrepriseRepository.save(entreprise).getId();
 }
 
+@Override
+public void update(int id, Entreprise entreprise) {
+
+	 entrepriseRepository.save(entreprise);
+	
+}
+
+@Override
+public void updatePartial(Entreprise entrepriseExistante, Entreprise newEntreprise) {
+
+	// Mettre à joure les champs de l'entreprise
+	if(newEntreprise.getName() != null) {
+		entrepriseExistante.setName(newEntreprise.getName());
+	}
+	
+	if(newEntreprise.getVille() != null) {
+		entrepriseExistante.setVille(newEntreprise.getVille());
+	}
+	
+	
+	 entrepriseRepository.save(entrepriseExistante);
+	
+}
+
+@Override
+public void delete(int id) {
+
+	entrepriseRepository.deleteById(id);
+}
+
 }
